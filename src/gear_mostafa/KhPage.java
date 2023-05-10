@@ -4,7 +4,11 @@
  */
 package gear_mostafa;
 
+import com.sun.source.tree.BreakTree;
+import java.awt.Color;
+import javax.swing.BorderFactory;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -32,54 +36,54 @@ public class KhPage extends javax.swing.JFrame implements Node{
         CmcValue = new javax.swing.ButtonGroup();
         CpmValue = new javax.swing.ButtonGroup();
         CeValue = new javax.swing.ButtonGroup();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
+        CmcButton1 = new javax.swing.JRadioButton();
+        CmcButton2 = new javax.swing.JRadioButton();
         jLabel1 = new javax.swing.JLabel();
-        jRadioButton3 = new javax.swing.JRadioButton();
-        jRadioButton4 = new javax.swing.JRadioButton();
+        CpmButton1 = new javax.swing.JRadioButton();
+        CpmButton2 = new javax.swing.JRadioButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         CmaComboBox = new javax.swing.JComboBox<>();
-        jRadioButton5 = new javax.swing.JRadioButton();
+        CeButton1 = new javax.swing.JRadioButton();
         jRadioButton6 = new javax.swing.JRadioButton();
         jLabel4 = new javax.swing.JLabel();
         khCalcButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
-        setTitle("Kh Page");
+        setTitle("Load Distribution Factor");
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);
             }
         });
 
-        CmcValue.add(jRadioButton1);
-        jRadioButton1.setText("Yes");
+        CmcValue.add(CmcButton1);
+        CmcButton1.setText("Yes");
 
-        CmcValue.add(jRadioButton2);
-        jRadioButton2.setText("No");
+        CmcValue.add(CmcButton2);
+        CmcButton2.setText("No");
 
-        jLabel1.setText("Cmc");
+        jLabel1.setText("Crowned teeth");
 
-        CpmValue.add(jRadioButton3);
-        jRadioButton3.setText("Yes");
+        CpmValue.add(CpmButton1);
+        CpmButton1.setText("Yes");
 
-        CpmValue.add(jRadioButton4);
-        jRadioButton4.setText("No");
+        CpmValue.add(CpmButton2);
+        CpmButton2.setText("No");
 
-        jLabel2.setText("Cpm");
+        jLabel2.setText("Center mounted");
 
-        jLabel3.setText("Cma");
+        jLabel3.setText("Gearing type");
 
-        CmaComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Open gearing", "Commercial", "Precision", "Extra Percision" }));
+        CmaComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Open gearing", "Commercial enclosed units", "Precision enclosed units", "Extra Percision enclosed units" }));
 
-        CeValue.add(jRadioButton5);
-        jRadioButton5.setText("Yes");
+        CeValue.add(CeButton1);
+        CeButton1.setText("Yes");
 
         CeValue.add(jRadioButton6);
         jRadioButton6.setText("No");
 
-        jLabel4.setText("Ce");
+        jLabel4.setText("Adjustment at assembly");
 
         khCalcButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         khCalcButton.setText("Calculate");
@@ -94,59 +98,49 @@ public class KhPage extends javax.swing.JFrame implements Node{
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(82, 82, 82)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jRadioButton6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jRadioButton5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jRadioButton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jRadioButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(89, 89, 89))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jRadioButton4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jRadioButton3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(89, 89, 89))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(CmaComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(76, 76, 76))))))
-            .addGroup(layout.createSequentialGroup()
                 .addGap(148, 148, 148)
                 .addComponent(khCalcButton)
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(38, 38, 38)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel4)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(69, 69, 69)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(CmaComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jRadioButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(CeButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(CmcButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(CmcButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(CpmButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(CpmButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(13, 13, 13)))
+                .addGap(55, 55, 55))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(37, 37, 37)
+                .addGap(36, 36, 36)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jRadioButton1)
+                        .addComponent(CmcButton1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jRadioButton2)))
+                        .addComponent(CmcButton2)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jRadioButton3)
+                        .addComponent(CpmButton1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jRadioButton4)))
+                        .addComponent(CpmButton2)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)
@@ -155,19 +149,63 @@ public class KhPage extends javax.swing.JFrame implements Node{
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jRadioButton5)
+                        .addComponent(CeButton1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jRadioButton6)))
-                .addGap(43, 43, 43)
+                .addGap(44, 44, 44)
                 .addComponent(khCalcButton)
                 .addGap(45, 45, 45))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void khCalcButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_khCalcButtonActionPerformed
-
+     if (CmcButton1.isSelected()){
+         HomePage.Cmc = 0.8;
+     } else if (CmcButton2.isSelected()){
+         HomePage.Cmc = 1;
+     } else{
+         JOptionPane.showMessageDialog(null, "enter Cmc button option");
+         return;
+     } if (CpmButton1.isSelected()){
+         HomePage.Cpm = 1;
+     } else if (CpmButton2.isSelected()){
+         HomePage.Cpm =1.1;
+     } else{
+         JOptionPane.showMessageDialog(null, "enter Cpm button option");
+         return;
+     }if (CeButton1.isSelected()){
+         HomePage.Ce = 0.8;
+     } else if (jRadioButton6.isSelected()){
+         HomePage.Ce =1;
+     } else{
+         JOptionPane.showMessageDialog(null, "enter Ce button option");
+         return;
+     } if (HomePage.b <=25){
+         HomePage.Cpf = HomePage.b/(10*HomePage.mt*HomePage.n)-0.025; // put equation 1
+     } else if (HomePage.b <=425){
+         HomePage.Cpf = HomePage.b/(10*HomePage.mt*HomePage.n)-0.0375 + 4.92*Math.pow(10, -4)*HomePage.b; // put equation 2
+     } else {
+         HomePage.Cpf = HomePage.b/(10*HomePage.mt*HomePage.n)-0.1109 + 8.15*Math.pow(10, -4)*HomePage.b - 3.53*Math.pow(10, -7)*HomePage.b*HomePage.b; // put equation 3;
+     }
+     switch (CmaComboBox.getSelectedIndex()) { // enter equations of Cma
+            case 0 -> HomePage.Cma = 0.247+0.00065748*HomePage.b-1.1858*Math.pow(10, -7)*HomePage.b*HomePage.b;
+            case 1 -> HomePage.Cma = 0.127+0.00062205*HomePage.b-0.1442*Math.pow(10, -7)*HomePage.b*HomePage.b;
+            case 2 -> HomePage.Cma = 0.0675+0.00050394*HomePage.b-1.4353*Math.pow(10, -7)*HomePage.b*HomePage.b;
+            case 3 -> HomePage.Cma = 0.0036+0.00040157*HomePage.b-1.2741*Math.pow(10, -7)*HomePage.b*HomePage.b;
+            default -> {
+            }
+        }
+     HomePage.KhValue = 1 + (HomePage.Cmc * ((HomePage.Cpm* HomePage.Cpf)+ (HomePage.Cma * HomePage.Ce)));
+     String result2 = String.format("%.2f", HomePage.KhValue);
+     JOptionPane.showMessageDialog(null, "Kh Value is " + result2);
+     HomePage.KhButton.setBorder(BorderFactory.createLineBorder(Color.GREEN,3));
+     HomePage.KhButton.setOpaque(true);
+     this.setVisible(false);
+     ((JFrame)getParentNode()).setVisible(true);
+     
     }//GEN-LAST:event_khCalcButtonActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
@@ -180,19 +218,19 @@ public class KhPage extends javax.swing.JFrame implements Node{
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JRadioButton CeButton1;
     private javax.swing.ButtonGroup CeValue;
     private javax.swing.JComboBox<String> CmaComboBox;
+    private javax.swing.JRadioButton CmcButton1;
+    private javax.swing.JRadioButton CmcButton2;
     private javax.swing.ButtonGroup CmcValue;
+    private javax.swing.JRadioButton CpmButton1;
+    private javax.swing.JRadioButton CpmButton2;
     private javax.swing.ButtonGroup CpmValue;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
-    private javax.swing.JRadioButton jRadioButton4;
-    private javax.swing.JRadioButton jRadioButton5;
     private javax.swing.JRadioButton jRadioButton6;
     private javax.swing.JButton khCalcButton;
     // End of variables declaration//GEN-END:variables

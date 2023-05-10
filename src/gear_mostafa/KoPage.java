@@ -4,6 +4,8 @@
  */
 package gear_mostafa;
 
+import java.awt.Color;
+import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -47,7 +49,7 @@ public class KoPage extends javax.swing.JFrame implements Node {
         koCalcButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
-        setTitle("Ko Page");
+        setTitle("Overload Factor");
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);
@@ -55,7 +57,7 @@ public class KoPage extends javax.swing.JFrame implements Node {
         });
 
         KoPowerFactor.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        KoPowerFactor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Uniform Load", "Light shock", "Heavy shock" }));
+        KoPowerFactor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Uniform Load", "Light Shock", "Medium Shock" }));
         KoPowerFactor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 KoPowerFactorActionPerformed(evt);
@@ -69,7 +71,7 @@ public class KoPage extends javax.swing.JFrame implements Node {
         jLabel2.setText("Power source shock");
 
         KoMachineFactor.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        KoMachineFactor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Uniform Load", "Light shock", "Heavy shock" }));
+        KoMachineFactor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Uniform Load", "Moderate Shock", "Heavy Shock" }));
         KoMachineFactor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 KoMachineFactorActionPerformed(evt);
@@ -120,6 +122,7 @@ public class KoPage extends javax.swing.JFrame implements Node {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void KoPowerFactorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_KoPowerFactorActionPerformed
@@ -135,23 +138,28 @@ public class KoPage extends javax.swing.JFrame implements Node {
 
     private void koCalcButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_koCalcButtonActionPerformed
         // TODO add your handling code here:
-        if(KoPowerFactor.getSelectedIndex() == 0){
-            PowerFactor = 0;
-        } else if (KoPowerFactor.getSelectedIndex() == 1){
-            PowerFactor =0.25;
-        } else if (KoPowerFactor.getSelectedIndex() == 2){
-            PowerFactor =0.5;
+        switch (KoPowerFactor.getSelectedIndex()) {
+            case 0 -> PowerFactor = 0;
+            case 1 -> PowerFactor =0.25;
+            case 2 -> PowerFactor =0.5;
+            default -> {
+            }
         }
-         if(KoMachineFactor.getSelectedIndex() == 0){
-           MachineFactor = 0;
-        } else if (KoMachineFactor.getSelectedIndex() == 1){
-            MachineFactor =0.5;
-        } else if (KoMachineFactor.getSelectedIndex() == 2){
-             MachineFactor=0.75;
+        switch (KoMachineFactor.getSelectedIndex()) {
+            case 0 -> MachineFactor = 0;
+            case 1 -> MachineFactor =0.5;
+            case 2 -> MachineFactor=0.75;
+            default -> {
+            }
         }
         HomePage.KoValue = 1 + PowerFactor + MachineFactor;
         //System.out.println("KoValue" + HomePage.KoValue);
-        JOptionPane.showMessageDialog(null," Overload factor =  " + HomePage.KoValue);
+        JOptionPane.showMessageDialog(null," Overload factor = " + HomePage.KoValue);
+        this.setVisible(false);
+        ((JFrame)getParentNode()).setVisible(true);
+        HomePage.KoButton.setBorder(BorderFactory.createLineBorder(Color.GREEN,3));
+        HomePage.KoButton.setOpaque(true);
+        
         
     }//GEN-LAST:event_koCalcButtonActionPerformed
 

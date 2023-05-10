@@ -3,8 +3,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package gear_mostafa;
-
+import java.awt.Color;
+import java.lang.Math.*;
+import javax.swing.BorderFactory;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -35,7 +38,7 @@ public class KvPage extends javax.swing.JFrame implements Node{
         kvCalcButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
-        setTitle("Kv Page");
+        setTitle("Velocity Factor");
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);
@@ -43,7 +46,7 @@ public class KvPage extends javax.swing.JFrame implements Node{
         });
 
         KvCostFactor.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        KvCostFactor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cost", "Cut", "Hobbed", "Showed" }));
+        KvCostFactor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cost", "Cut", "Hobbed", "Shaved" }));
         KvCostFactor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 KvCostFactorActionPerformed(evt);
@@ -89,6 +92,7 @@ public class KvPage extends javax.swing.JFrame implements Node{
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void KvCostFactorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_KvCostFactorActionPerformed
@@ -97,8 +101,21 @@ public class KvPage extends javax.swing.JFrame implements Node{
     }//GEN-LAST:event_KvCostFactorActionPerformed
 
     private void kvCalcButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kvCalcButtonActionPerformed
-
-
+        HomePage.v = (HomePage.mt * HomePage.n*Math.PI*HomePage.Speed)/60000;
+        switch (KvCostFactor.getSelectedIndex()) { // enter equations of Cma
+            case 0 -> HomePage.KvValue = (3.05+HomePage.v)/3.05;
+            case 1 -> HomePage.KvValue = (6.1+HomePage.v)/6.1;
+            case 2 -> HomePage.KvValue = (3.56+Math.sqrt(HomePage.v))/3.56;
+            case 3 -> HomePage.KvValue = (5.56+Math.sqrt(HomePage.v))/5.56;
+            default -> { // enter equations instead of numbers
+            } 
+        }
+        String result3 = String.format("%.2f", HomePage.KvValue);
+        JOptionPane.showMessageDialog(null, "Kv Value is " + result3);
+        HomePage.KvButton.setBorder(BorderFactory.createLineBorder(Color.GREEN,3));
+        HomePage.KvButton.setOpaque(true);
+        this.setVisible(false);
+        ((JFrame)getParentNode()).setVisible(true);
     }//GEN-LAST:event_kvCalcButtonActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing

@@ -4,6 +4,11 @@
  */
 package gear_mostafa;
 
+import com.sun.source.tree.BreakTree;
+import java.awt.Color;
+import javax.swing.BorderFactory;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author taver
@@ -20,10 +25,17 @@ public class HomePage1 extends javax.swing.JFrame implements Node {
         this.Kh = new KhPage (this);
 
     }
+    SteelForm stForm = new SteelForm(this);
+    CycleForm CfForm = new CycleForm(this);
+    ReliabilityForm RForm = new ReliabilityForm(this);
+    ModifyingFactor Yj = new ModifyingFactor(this);
+    GeometryFactor Yj1 = new GeometryFactor(this);
     KoPage Ko;
     KvPage Kv;
     KhPage Kh;
-    double KoValue, KvValue, KsValue, KhValue, KbValue, b, mt, yj;
+    
+    int n;
+    double KoValue, KvValue, KsValue, KhValue, KbValue=1, b, mt, ModifyingFactorn,GeometryFactorn,yj,v,Cmc,Cpf,Ce,Cma,Cpm,Speed,Sigma,Wt,Rfvalue,stress,allowable,cycleFactor;
     private Node parent;
 
     @Override
@@ -48,30 +60,42 @@ public class HomePage1 extends javax.swing.JFrame implements Node {
         KoButton = new javax.swing.JButton();
         KvButton = new javax.swing.JButton();
         KhButton = new javax.swing.JButton();
-        YjButton = new javax.swing.JButton();
-        jButton10 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        KsButton = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        Ntext = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        Btext = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        Mttext = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        SpeedText = new javax.swing.JTextField();
+        YjButton1 = new javax.swing.JButton();
+        SigmaButton = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        Forcetext = new javax.swing.JTextField();
+        SteelButton = new javax.swing.JButton();
+        RfButton = new javax.swing.JButton();
+        FinalText = new javax.swing.JTextField();
+        SafetyButton = new javax.swing.JButton();
+        CycleButton = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        AllowableButton = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Home Page");
+        setTitle("Steel Gear AGMA Design");
 
-        KoButton.setBackground(new java.awt.Color(0, 0, 0));
         KoButton.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        KoButton.setForeground(new java.awt.Color(255, 255, 255));
         KoButton.setText("Ko");
+        KoButton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(1, 1, 1)));
         KoButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 KoButtonActionPerformed(evt);
             }
         });
 
-        KvButton.setBackground(new java.awt.Color(0, 0, 0));
         KvButton.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        KvButton.setForeground(new java.awt.Color(255, 255, 255));
         KvButton.setText("Kv");
         KvButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -79,9 +103,7 @@ public class HomePage1 extends javax.swing.JFrame implements Node {
             }
         });
 
-        KhButton.setBackground(new java.awt.Color(0, 0, 0));
         KhButton.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        KhButton.setForeground(new java.awt.Color(255, 255, 255));
         KhButton.setText("Kh");
         KhButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -89,114 +111,296 @@ public class HomePage1 extends javax.swing.JFrame implements Node {
             }
         });
 
-        YjButton.setBackground(new java.awt.Color(0, 0, 0));
-        YjButton.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        YjButton.setForeground(new java.awt.Color(255, 255, 255));
-        YjButton.setText("Yj");
-        YjButton.addActionListener(new java.awt.event.ActionListener() {
+        KsButton.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        KsButton.setText("Ks");
+        KsButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                YjButtonActionPerformed(evt);
+                KsButtonActionPerformed(evt);
             }
         });
 
-        jButton10.setBackground(new java.awt.Color(0, 0, 0));
-        jButton10.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jButton10.setForeground(new java.awt.Color(255, 255, 255));
-        jButton10.setText("Ks");
-
-        jLabel2.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel2.setBackground(new java.awt.Color(255, 255, 255));
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(204, 204, 204));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Sigma = Wt*Ko*Kv*Ks*Kh*Kb*1/b*1/Mt*1/Yj");
+        jLabel2.setIcon(new javax.swing.ImageIcon("K:\\gear_mostafa\\src\\eqn1.JPG")); // NOI18N
         jLabel2.setOpaque(true);
 
-        jLabel3.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("Sigma");
-        jLabel3.setOpaque(true);
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText("Number of teeth");
 
-        jTextField1.setEditable(false);
-        jTextField1.setBackground(new java.awt.Color(153, 153, 153));
-        jTextField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField1.setText("uneditable");
+        Ntext.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        Ntext.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        Ntext.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NtextActionPerformed(evt);
+            }
+        });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)))
-        );
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel5.setText("Face width");
+
+        Btext.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        Btext.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        Btext.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtextActionPerformed(evt);
+            }
+        });
+
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel6.setText("Module");
+
+        Mttext.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        Mttext.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        Mttext.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MttextActionPerformed(evt);
+            }
+        });
+
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel7.setText("Speed (RPM)");
+
+        SpeedText.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        SpeedText.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        SpeedText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SpeedTextActionPerformed(evt);
+            }
+        });
+
+        YjButton1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        YjButton1.setText("Geometry Factor");
+        YjButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                YjButton1ActionPerformed(evt);
+            }
+        });
+
+        SigmaButton.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        SigmaButton.setText("Calculate Stress");
+        SigmaButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SigmaButtonActionPerformed(evt);
+            }
+        });
+
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel8.setText("Force");
+
+        Forcetext.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        Forcetext.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        Forcetext.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ForcetextActionPerformed(evt);
+            }
+        });
+
+        SteelButton.setText("Steel Grade");
+        SteelButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SteelButtonActionPerformed(evt);
+            }
+        });
+
+        RfButton.setText("Reliability Factor");
+        RfButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RfButtonActionPerformed(evt);
+            }
+        });
+
+        FinalText.setEditable(false);
+        FinalText.setBackground(new java.awt.Color(153, 153, 153));
+        FinalText.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        FinalText.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        FinalText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                FinalTextActionPerformed(evt);
+            }
+        });
+
+        SafetyButton.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        SafetyButton.setText("Calculate Factor of Safety");
+        SafetyButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SafetyButtonActionPerformed(evt);
+            }
+        });
+
+        CycleButton.setText("Stress Cycle Factor");
+        CycleButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CycleButtonActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setBackground(new java.awt.Color(0, 0, 0));
+
+        AllowableButton.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        AllowableButton.setText("Calculate Allowable Stress");
+        AllowableButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AllowableButtonActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel3.setIcon(new javax.swing.ImageIcon("K:\\gear_mostafa\\src\\eqn2.JPG")); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(222, 222, 222)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 402, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(107, Short.MAX_VALUE)
+                .addContainerGap(84, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(200, 200, 200))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(KoButton, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(KvButton, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(KhButton, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(YjButton, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(103, 103, 103))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(291, 291, 291))))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 620, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addComponent(SteelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(29, 29, 29)
+                            .addComponent(RfButton, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(CycleButton)
+                            .addGap(87, 87, 87))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(191, 191, 191)
+                            .addComponent(AllowableButton)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(KoButton, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(KvButton, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(KsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(KhButton, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(YjButton1))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(56, 56, 56)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(Forcetext, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(Btext, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(Mttext, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(SpeedText, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(Ntext, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(56, 56, 56))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(207, 207, 207)
+                        .addComponent(jLabel3)))
+                .addGap(81, 81, 81))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(263, 263, 263)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(SafetyButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(61, 61, 61)
+                                .addComponent(FinalText, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(55, 55, 55))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(238, 238, 238)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(313, 313, 313)
+                        .addComponent(SigmaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(KoButton)
                     .addComponent(KvButton)
-                    .addComponent(jButton10)
+                    .addComponent(KsButton)
                     .addComponent(KhButton)
-                    .addComponent(YjButton))
-                .addGap(229, 229, 229)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(YjButton1))
+                .addGap(27, 27, 27)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Ntext, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4)
+                    .addComponent(Btext)
+                    .addComponent(jLabel5))
+                .addGap(22, 22, 22)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(Mttext, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7)
+                    .addComponent(SpeedText, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(Forcetext, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(SigmaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(45, 45, 45)
+                .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(SteelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(RfButton, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(CycleButton, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(AllowableButton, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addComponent(SafetyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(FinalText, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(16, 16, 16))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void KhButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_KhButtonActionPerformed
-        this.setVisible(false);
-        Kh.setParentNode(this);
-        Kh.setVisible(true);
-
+         try{
+            b = Double.parseDouble(Btext.getText());
+            n = Integer.parseInt(Ntext.getText());
+            mt = Double.parseDouble(Mttext.getText());
+             if( b <=0 || mt<0 || n<12){
+                 JOptionPane.showMessageDialog(null, "enter face width, mt and number of teeth as positive numbers");
+                 return;
+            }
+            this.setVisible(false);
+            Kh.setParentNode(this);
+            Kh.setVisible(true);
+            }catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null, "Please enter face wdith, mt and number of teeth first as positive numbers");
+        }
     }//GEN-LAST:event_KhButtonActionPerformed
 
     private void KoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_KoButtonActionPerformed
@@ -204,23 +408,190 @@ public class HomePage1 extends javax.swing.JFrame implements Node {
         this.setVisible(false);
         Ko.setParentNode(this);
         Ko.setVisible(true);
+        
 
     }//GEN-LAST:event_KoButtonActionPerformed
 
-    private void YjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_YjButtonActionPerformed
-        // TODO add your handling code here:
-        this.setVisible(false);
-        YjGraph Yj = new YjGraph();
-        Yj.setParentNode(this);
-        Yj.setVisible(true);
-    }//GEN-LAST:event_YjButtonActionPerformed
-
     private void KvButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_KvButtonActionPerformed
-        this.setVisible(false);
-        Kv.setParentNode(this);
-        Kv.setVisible(true);
+        try{
+            n = Integer.parseInt(Ntext.getText());
+            mt = Double.parseDouble(Mttext.getText());
+            Speed = Double.parseDouble(SpeedText.getText());
+             if(n < 12 || mt <=0 || Speed <=0){
+                 JOptionPane.showMessageDialog(null, "enter number of teeth, module and speed first as positive numbers");
+                 return;
+            }
+            this.setVisible(false);
+            Kv.setParentNode(this);
+            Kv.setVisible(true);
+        }catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null, "Please number of teeth and speed module values");
+        }
+        
+        
+
 
     }//GEN-LAST:event_KvButtonActionPerformed
+
+    private void NtextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NtextActionPerformed
+        // TODO add your handling code here:
+       
+    }//GEN-LAST:event_NtextActionPerformed
+
+    private void MttextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MttextActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_MttextActionPerformed
+
+    private void BtextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtextActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_BtextActionPerformed
+
+    private void SpeedTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SpeedTextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_SpeedTextActionPerformed
+
+    private void KsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_KsButtonActionPerformed
+//         TODO add your handling code here:
+        try{
+            //yj = GeometryFactorn*ModifyingFactorn;
+            double[] Narray =  new double[401] ;
+            Narray[12] = 0.245; Narray[13] = 0.261; Narray[14] = 0.277;Narray[15] = 0.29;
+            Narray[16] = 0.296; Narray[17] = 0.303; Narray[19] = 0.314;Narray[20] = 0.322; Narray[21] =0.328;
+            Narray[22] = 0.331; Narray[24] =0.337; Narray[26] = 0.346; Narray[28] = 0.353;
+            Narray[30] = 0.359; Narray[34] = 0.371; Narray[38] = 0.384; Narray[43] = 0.397;
+            Narray[50] = 0.409; Narray[60] = 0.422; Narray[75] = 0.435; Narray[100] = 0.447;
+            Narray[150] = 0.460; Narray[300] = 0.472; Narray[400] = 0.480;
+            for (int i =18; i<400;i++){
+                int j =i+1;
+                if(Narray[i] == 0){
+                    while(Narray[j] == 0){
+                        j++;
+                    }
+                    double diff = j-i+1;
+                    Narray[i] = Narray[i-1] +(( Narray[j]- Narray[i-1])/diff);
+                }
+            }
+            n = Integer.parseInt(Ntext.getText());
+            mt = Double.parseDouble(Mttext.getText());
+            b = Double.parseDouble(Btext.getText());
+            if(n < 12 || mt <=0 || b <=0){
+                 JOptionPane.showMessageDialog(null, "enter face width, number of teeth and module first as positive numbers");
+                 return;
+            }
+            double y = Narray[n];
+            y = Math.sqrt(y);
+            KsValue = 0.904 *Math.pow((b*mt*y), 0.0535);
+            if (KsValue < 1){
+                KsValue =1;
+            }
+            String result1 = String.format("%.2f", KsValue);
+            JOptionPane.showMessageDialog(null, "Ks Value is " + result1);
+            KsButton.setBorder(BorderFactory.createLineBorder(Color.GREEN,3));
+            KsButton.setOpaque(true);
+            
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "enter face width, number of teeth and module first as numbers");
+           
+        }
+    }//GEN-LAST:event_KsButtonActionPerformed
+
+    private void YjButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_YjButton1ActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        Yj1.setParentNode(this);
+        Yj1.setVisible(true);
+    }//GEN-LAST:event_YjButton1ActionPerformed
+
+    private void SigmaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SigmaButtonActionPerformed
+        // TODO add your handling code here:
+        try{
+            yj = GeometryFactorn*ModifyingFactorn;
+            Wt = Double.parseDouble(Forcetext.getText());
+            Sigma = KoValue*Wt*KsValue*KvValue*KhValue*(1/(b*mt))*(1/yj);
+            String result = String.format("%.2f", Sigma);
+            //String s =Sigma +"";
+            JOptionPane.showMessageDialog(null, " Stress is " + result);
+            //SigmaAns.setText(result);
+
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(rootPane, "please enter all inputs");
+        }
+    }//GEN-LAST:event_SigmaButtonActionPerformed
+
+    private void ForcetextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ForcetextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ForcetextActionPerformed
+
+    private void RfButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RfButtonActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        RForm.setParentNode(this);
+        RForm.setVisible(true);
+        
+    }//GEN-LAST:event_RfButtonActionPerformed
+
+    private void FinalTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FinalTextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_FinalTextActionPerformed
+
+    private void SafetyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SafetyButtonActionPerformed
+        // TODO add your handling code here:
+        if(Sigma !=-0 && allowable !=0){
+        double FOS = allowable/Sigma;
+        String result5 = String.format("%.2f",FOS);
+        FinalText.setText(result5);
+        JOptionPane.showMessageDialog(null, "Factor of safery is " + result5);
+        if (FOS >=1 && FOS < 1.5){
+            JOptionPane.showMessageDialog(null, "WARNING! Low factor of safety");
+            FinalText.setForeground(Color.yellow);
+        } else if (FOS < 1){
+             JOptionPane.showMessageDialog(null, "WARNING! Unsafe");
+             FinalText.setForeground(Color.red);
+             
+        } else if (FOS >=1.5){
+            FinalText.setForeground(Color.green);
+        }
+        }else {
+            JOptionPane.showMessageDialog(null, "please enter all fields neccessary");
+        }
+    }//GEN-LAST:event_SafetyButtonActionPerformed
+
+    private void SteelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SteelButtonActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        stForm.setParentNode(this);
+        stForm.setVisible(true);
+    }//GEN-LAST:event_SteelButtonActionPerformed
+
+    private void AllowableButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AllowableButtonActionPerformed
+        // TODO add your handling code here:
+        if ((stress * cycleFactor)/Rfvalue == 0){
+            JOptionPane.showMessageDialog(null, "please enter all fields neccessary");
+        }else{
+            allowable = (stress * cycleFactor)/Rfvalue;
+            String result4 = String.format("%.2f", allowable);
+            JOptionPane.showMessageDialog(null, "Allowable Stress is " + result4);
+        }
+    }//GEN-LAST:event_AllowableButtonActionPerformed
+
+    private void CycleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CycleButtonActionPerformed
+        // TODO add your handling code here:
+        try{
+            Speed = Double.parseDouble(SpeedText.getText());
+            if(Speed <=0){
+                JOptionPane.showMessageDialog(null, "Please enter the speed as a positive number");
+                return;
+            }
+            this.setVisible(false);
+            CfForm.setParentNode(this);
+            CfForm.setVisible(true);
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Please enter the speed first");
+        }
+    }//GEN-LAST:event_CycleButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -258,15 +629,30 @@ public class HomePage1 extends javax.swing.JFrame implements Node {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton KhButton;
-    private javax.swing.JButton KoButton;
-    private javax.swing.JButton KvButton;
-    private javax.swing.JButton YjButton;
-    private javax.swing.JButton jButton10;
+    private javax.swing.JButton AllowableButton;
+    private javax.swing.JTextField Btext;
+    public javax.swing.JButton CycleButton;
+    private javax.swing.JTextField FinalText;
+    private javax.swing.JTextField Forcetext;
+    public javax.swing.JButton KhButton;
+    public javax.swing.JButton KoButton;
+    public javax.swing.JButton KsButton;
+    public javax.swing.JButton KvButton;
+    private javax.swing.JTextField Mttext;
+    private javax.swing.JTextField Ntext;
+    public javax.swing.JButton RfButton;
+    private javax.swing.JButton SafetyButton;
+    private javax.swing.JButton SigmaButton;
+    private javax.swing.JTextField SpeedText;
+    public javax.swing.JButton SteelButton;
+    public javax.swing.JButton YjButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     // End of variables declaration//GEN-END:variables
 }
